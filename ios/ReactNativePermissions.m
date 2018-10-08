@@ -36,7 +36,6 @@
 
 #import "RNPNotification.h"
 #import "RNPAudioVideo.h"
-#import "RNPPhoto.h"
 
 
 @interface ReactNativePermissions()
@@ -109,9 +108,6 @@ RCT_REMAP_METHOD(getPermissionStatus, getPermissionStatus:(RNPType)type json:(id
         case RNPTypeMicrophone:
             status = [RNPAudioVideo getStatus:@"audio"];
             break;
-        case RNPTypePhoto:
-            status = [RNPPhoto getStatus];
-            break;
         case RNPTypeNotification:
             status = [RNPNotification getStatus];
             break;
@@ -131,8 +127,6 @@ RCT_REMAP_METHOD(requestPermission, permissionType:(RNPType)type json:(id)json r
             return [RNPAudioVideo request:@"video" completionHandler:resolve];
         case RNPTypeMicrophone:
             return [RNPAudioVideo request:@"audio" completionHandler:resolve];
-        case RNPTypePhoto:
-            return [RNPPhoto request:resolve];
         case RNPTypeNotification:
             return [self requestNotification:json resolve:resolve];
         default:
